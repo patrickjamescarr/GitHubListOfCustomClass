@@ -46,7 +46,6 @@ namespace ListOfCustomClass
 
             // keep asking user until exit is chosen
             bool KeepGoing = true;
-
             do
             {
                 // Using switch statement to add more user or not, via console.
@@ -119,30 +118,34 @@ namespace ListOfCustomClass
             Console.WriteLine("\n><><><><><><><><><><><><><><><><><><><><><><><\n");
 
             // Override Equals methods - Video 82.
+            bool TestEquals = people[2].Equals(people[3]);
+            Console.WriteLine($"is {people[2]} and {people[3]} is the same object? the answer is {TestEquals}");
+
+            /* i need help badly here...
+             * 
+             * .*/
             Console.WriteLine("Equals method override...do you want to check if two objects in the list have the same age? Y or N");
             var check = Console.ReadLine().ToLower();
             switch (check)
             {
                 case "y":
                     // new age list. 
-                    List<int> ageList = new List<int>() { 1, 2, 3, 1, 4, 5 };
-                    // go through the people list grab each Object's Age value store it in the new age list
-                    //foreach (Person person in people)
-                    //{
-                    //    ageList.Add(Convert.ToInt32(person.Age));
-                    //}
-                    // using LINQ to query the list where ages are the same
-                    var sameAgeQuery =
+                    List<int> ageList = new List<int>(); 
+                    // go through the people list of type Person (see line.17) - grab each Object's Age value store it in the new age list
+                    foreach (Person person in people)
+                    {
+                        ageList.Add(Convert.ToInt32(person.Age));
+                    }
+                    // using LINQ to query the list where ages are the same <<<<<<<<<<<<<<<<<<
+                    /*var sameAgeQuery =
                         from x in people
-                        where (x)
+                        where ...??? stuck... :(*/
                     break;
                 case "n":
                     break;
                 default:
                     break;
             }
-            bool TestEquals = people[2].Equals(people[3]);
-            Console.WriteLine($"is {people[2]} and {people[3]} is the same object? the answer is {TestEquals}");
 
             // Overload methods - Video 83
             Console.ReadKey();
