@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks.Dataflow;
-using System.Transactions;
+using System.Linq;
 
 namespace ListOfCustomClass
 {
@@ -137,9 +135,26 @@ namespace ListOfCustomClass
                         ageList.Add(Convert.ToInt32(person.Age));
                     }
                     // using LINQ to query the list where ages are the same <<<<<<<<<<<<<<<<<<
-                    /*var sameAgeQuery =
-                        from x in people
-                        where ...??? stuck... :(*/
+
+                    // Group the people list by age
+                    var sameAgeQuery = from person in people
+                                       group person by person.Age into ageGroup
+                                       orderby ageGroup.Key
+                                       select ageGroup;
+
+                    Console.WriteLine("People grouped by age: ");
+
+                    // loop through each age in the group and output the people with that age
+                    foreach (var ageGroup in sameAgeQuery)
+                    {
+                        Console.WriteLine($"Age: {ageGroup.Key}");
+
+                        foreach (var person in ageGroup)
+                        {
+                            Console.WriteLine(person.Fullname);
+                        }
+                    }
+
                     break;
                 case "n":
                     break;
